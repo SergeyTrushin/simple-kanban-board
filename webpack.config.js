@@ -24,6 +24,15 @@ module.exports = {
         },
       },
       {
+        test: /\.css$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+        ],
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
@@ -40,8 +49,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "src/index.html",
     }),
-    // new CopyWebpackPlugin({
-    //   patterns: [{ from: "public", to: "public" }],
-    // }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "public", to: "" }],
+    }),
   ],
 };
