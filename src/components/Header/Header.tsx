@@ -36,6 +36,7 @@ const SearchContainer = styled.div`
 
 const IconContainer = styled.div`
   position: relative;
+  color: #8c939f;
 `;
 
 const BadgeContainer = styled.div`
