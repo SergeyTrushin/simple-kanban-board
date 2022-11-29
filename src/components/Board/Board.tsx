@@ -6,6 +6,10 @@ import styled from "styled-components";
 import { Column } from "./Сolumn";
 import { ColumnCreateStatus } from "./ColumnCreateStatus";
 
+type Props = {
+  className?: string;
+};
+
 const Container = styled.div`
   display: flex;
   flex-grow: 1;
@@ -59,7 +63,7 @@ const initialColumns = [
   { id: 4, title: "Completed", cardIds: [] },
 ];
 
-export const Board: React.FC = () => {
+export const Board: React.FC<Props> = ({ className }) => {
   const [cards] = useState(initialCards);
   const [columns, setColumns] = useState(initialColumns);
 
@@ -85,7 +89,7 @@ export const Board: React.FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <Container>
+      <Container className={className}>
         {columns.map(({ title, id, cardIds }, index) => (
           <Column
             key={id}

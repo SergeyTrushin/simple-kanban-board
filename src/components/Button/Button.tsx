@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+type Props = {
+  /** View variant */
+  variant?: "primary" | "outlined" | "text";
+  className?: string;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
 const backgroundColors: Record<string, string> = {
   primary: "#0094ff",
   primaryHovered: "#0076cc",
@@ -15,7 +21,7 @@ const textColors: Record<string, string> = {
   text: "#8C939F",
 };
 
-const Container = styled.button<ButtonProps>`
+const Container = styled.button<Props>`
   display: inline-flex;
   position: relative;
   align-items: center;
@@ -42,18 +48,15 @@ const Container = styled.button<ButtonProps>`
     background-color: ${({ variant }) => backgroundColors[`${variant}Hovered`]};
   }
 `;
-type ButtonProps = {
-  /** View variant */
-  variant?: "primary" | "outlined" | "text";
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<Props> = ({
   variant = "primary",
   children,
+  className,
   ...restProps
 }) => {
   return (
-    <Container variant={variant} {...restProps}>
+    <Container className={className} variant={variant} {...restProps}>
       {children}
     </Container>
   );

@@ -13,31 +13,36 @@ type Props = {
 
 const InputContainer = styled.div`
   position: relative;
-  width: 180px;
-  height: 40px;
-  padding: 12px 16px;
-  background-color: #f5f8fa;
-  border-radius: 50px;
+  width: 187px;
+  padding: 9px 10px;
+  background: #2d4071;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 14px;
 `;
 
 const Input = styled.input`
   width: 100%;
+  display: flex;
+  align-items: center;
   border: none;
   outline: none;
+  padding: 0;
   background-color: transparent;
+  color: #8c939f;
 `;
 
 const PlaceHolder = styled.label`
   position: absolute;
-  top: 12px;
-  left: 16px;
+  top: 10px;
+  left: 10px;
   color: #8c939f;
   cursor: text;
 `;
 
 const IconContainer = styled.label`
   position: absolute;
-  top: 12px;
+  top: 10px;
   right: 16px;
   cursor: text;
 `;

@@ -2,7 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 import Icon from "../Icon";
-import { List } from "./List";
+import { Tabs } from "./Tabs";
+
+type Props = {
+  className?: string;
+};
 
 const mockList = [
   { title: "Roadmap", icon: <Icon.List /> },
@@ -15,6 +19,7 @@ const mockList = [
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 154px;
   gap: 26px;
   padding-top: 24px;
   padding-right: 16px;
@@ -27,12 +32,12 @@ const Title = styled.div`
   color: #222222;
 `;
 
-export const Tools: React.FC = () => {
+export const Tools: React.FC<Props> = ({ className }) => {
   return (
-    <Container>
+    <Container className={className}>
       <Title>Tools</Title>
 
-      <List items={mockList} onChange={(v) => console.log(v)} />
+      <Tabs items={mockList} onChange={(v) => console.log(v)} />
     </Container>
   );
 };

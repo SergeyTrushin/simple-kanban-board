@@ -5,7 +5,7 @@ import { useDrop } from "react-dnd";
 import { Badge } from "../Badge/Badge";
 import { Card } from "./Card";
 
-type ColumnProps = {
+type Props = {
   id: number;
   title: string;
   cards: {
@@ -17,12 +17,13 @@ type ColumnProps = {
   cardIds: number[];
   moveCard: (cardId: number, destColumnId: number, index: number) => void;
   columnIndex: number;
+  className?: string;
 };
 
-const ColumnContainer = styled.div`
+const ColumnContainer = styled.div<{ isFirstColumn: boolean }>`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex-grow: ${({ isFirstColumn }) => (isFirstColumn ? "0.95" : "0.9")};
 `;
 
 const Title = styled.div`
@@ -30,8 +31,11 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 25px 0 15px;
+  padding: 25px 0 13px;
   background-color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
 `;
 
 const TasksContainer = styled.div<{ isFirstColumn: boolean }>`
@@ -45,13 +49,14 @@ const TasksContainer = styled.div<{ isFirstColumn: boolean }>`
   background-color: #fff;
 `;
 
-export const Column: React.FC<ColumnProps> = ({
+export const Column: React.FC<Props> = ({
   id,
   title,
   cards,
   cardIds,
   moveCard,
   columnIndex,
+  className,
 }) => {
   const cardsAmount = cardIds.length;
   const isFirstColumn = columnIndex === 0;
@@ -69,7 +74,11 @@ export const Column: React.FC<ColumnProps> = ({
   );
 
   return (
-    <ColumnContainer ref={drop}>
+    <ColumnContainer
+      ref={drop}
+      className={className}
+      isFirstColumn={isFirstColumn}
+    >
       <Title>
         {title} <Badge variant="circle">{cardsAmount}</Badge>
       </Title>

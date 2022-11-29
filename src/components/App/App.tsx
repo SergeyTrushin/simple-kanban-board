@@ -7,6 +7,7 @@ import "../../styles/global.scss";
 import { Header } from "../Header/Header";
 import { Board } from "../Board/Board";
 import { Tools } from "../Tools/Tools";
+import { SideBar } from "../SideBar/SideBar";
 
 const Container = styled.div`
   display: flex;
@@ -23,7 +24,9 @@ const BoardContainer = styled.div`
 export const App: React.FC = () => {
   return (
     <Container>
+      <SideBar />
       <Tools />
+
       <BoardContainer>
         <Header />
         <Board />

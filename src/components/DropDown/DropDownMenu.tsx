@@ -1,12 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 
 import { SelectOption, SelectOptionValue } from "./DropDown";
 
-type DropDownMenuProps = {
+type Props = {
   options: SelectOption[];
   innerValue?: SelectOptionValue;
   handleSelect: (value: SelectOptionValue) => () => void;
+  className?: string;
 };
 
 const Menu = styled.div`
@@ -33,13 +34,14 @@ const MenuItem = styled.div<{ active: boolean }>`
   }
 `;
 
-export const DropDownMenu = ({
+export const DropDownMenu: FC<Props> = ({
   options,
   innerValue,
   handleSelect,
-}: DropDownMenuProps) => {
+  className,
+}) => {
   return (
-    <Menu>
+    <Menu className={className}>
       {options.map(({ value, label }) => (
         <MenuItem
           key={value}

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { useDrag, useDrop } from "react-dnd";
 
-type CardProps = {
+type Props = {
   id: number;
   columnId: number;
   columnIndex: number;
@@ -10,6 +10,7 @@ type CardProps = {
   title: string;
   estimate: string;
   moveCard: (cardId: number, destColumnId: number, index: number) => void;
+  className?: string;
 };
 
 const CardStyled = styled.div<{
@@ -45,12 +46,13 @@ const Title = styled.div<{ isComplete: boolean }>`
 
 const Estimate = styled.div<{ isComplete: boolean }>`
   font-size: 13px;
+  line-height: 20px;
   color: ${({ isComplete }) => (isComplete ? "#A5A5A5" : "#435e52")};
 `;
 
 const completeColumnId = 4;
 
-export const Card: FC<CardProps> = ({
+export const Card: FC<Props> = ({
   id,
   columnId,
   columnIndex,
@@ -58,6 +60,7 @@ export const Card: FC<CardProps> = ({
   title,
   estimate,
   moveCard,
+  className,
 }) => {
   const isComplete = columnId === completeColumnId;
 
@@ -92,6 +95,7 @@ export const Card: FC<CardProps> = ({
       isOver={isOver}
       isDragging={isDragging}
       isComplete={isComplete}
+      className={className}
     >
       <Title isComplete={isComplete}>{title}</Title>
       <Estimate isComplete={isComplete}>{estimate}</Estimate>

@@ -7,6 +7,10 @@ import { DropDown } from "../DropDown/DropDown";
 import { SearchInput } from "../SearchInput/SearchInput";
 import { Badge } from "../Badge/Badge";
 
+type Props = {
+  className?: string;
+};
+
 const mockOptions = [
   { value: "Kanban", label: "Kanban" },
   { value: "Board view", label: "Board view" },
@@ -37,17 +41,21 @@ const SearchContainer = styled.div`
 const IconContainer = styled.div`
   position: relative;
   color: #8c939f;
+  width: 32px;
+  padding-left: 7.5px;
+  padding-right: 6.5px;
 `;
 
 const BadgeContainer = styled.div`
   position: absolute;
-  top: -12px;
-  right: -15px;
+  top: -9px;
+  right: -10px;
 `;
 
-export const Header: React.FC = () => {
+export const Header: React.FC<Props> = ({ className }) => {
+  const notificationCount = 99;
   return (
-    <Container>
+    <Container className={className}>
       <ButtonContainer>
         <Button>
           <Icon.Plus />
@@ -71,11 +79,11 @@ export const Header: React.FC = () => {
           <Icon.Bell />
 
           <BadgeContainer>
-            <Badge variant="square">99+</Badge>
+            <Badge variant="square">{notificationCount}+</Badge>
           </BadgeContainer>
         </IconContainer>
 
-        <img src="./avatar.jpg" alt="Avatar" />
+        <img src="avatar.png" alt="Avatar" />
       </SearchContainer>
     </Container>
   );

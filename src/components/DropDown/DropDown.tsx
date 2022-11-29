@@ -8,11 +8,12 @@ export type SelectOptionValue = string | number;
 
 export type SelectOption = { value: SelectOptionValue; label: string };
 
-type DropDownProps = {
+type Props = {
   options: SelectOption[];
   value?: SelectOptionValue;
   defaultValue?: SelectOptionValue;
   onChange?: (value: SelectOptionValue) => void;
+  className?: string;
 };
 
 const Container = styled.div`
@@ -41,13 +42,19 @@ const Label = styled.div`
   justify-content: center;
   align-items: center;
   padding: 8px 14px 8px 20px;
+  gap: 8px;
+
+  & > svg {
+    color: #8c939f;
+  }
 `;
 
-export const DropDown: React.FC<DropDownProps> = ({
+export const DropDown: React.FC<Props> = ({
   value,
   defaultValue,
   options,
   onChange,
+  className,
 }) => {
   const ref = useRef(null);
   const [innerValue, setInnerValue] = useState<SelectOptionValue | undefined>(
@@ -88,7 +95,7 @@ export const DropDown: React.FC<DropDownProps> = ({
   }, [isOpen]);
 
   return (
-    <Container>
+    <Container className={className}>
       <Label onClick={handleOpen} ref={ref}>
         {innerValue} <Icon.Arrow />
       </Label>

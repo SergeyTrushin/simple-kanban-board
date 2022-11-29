@@ -6,14 +6,16 @@ type Item = {
   icon: React.ReactNode;
 };
 
-type ListProps = {
+type Props = {
   items: Item[];
   onChange?: (index: number) => void;
+  className?: string;
 };
 
 const Ul = styled.ul`
   display: flex;
   flex-direction: column;
+  margin: 0;
   padding: 0;
   list-style: none;
 `;
@@ -60,7 +62,7 @@ const Title = styled.div`
   min-width: 86px;
 `;
 
-export const List: React.FC<ListProps> = ({ items, onChange }) => {
+export const Tabs: React.FC<Props> = ({ items, onChange, className }) => {
   const [active, setActive] = useState(0);
 
   const handleClick = (index: number) => () => {
@@ -72,7 +74,7 @@ export const List: React.FC<ListProps> = ({ items, onChange }) => {
   };
 
   return (
-    <Ul>
+    <Ul className={className}>
       {items.map(({ title, icon }, index) => (
         <Li active={active === index} key={title} onClick={handleClick(index)}>
           {icon}
